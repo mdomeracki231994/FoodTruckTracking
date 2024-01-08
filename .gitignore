@@ -1,0 +1,45 @@
+# Ignore database files
+*.sqlite3
+*.db
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+
+# Ignore virtual environment
+venv/
+env/
+.Python
+pip-selfcheck.json
+
+# Ignore sensitive or secret information
+*.secret_key
+*.env
+
+# Ignore media and uploaded files
+media/
+
+# Ignore logs and debug output
+logs/
+*.log
+*.log.*
+*.log-*
+
+# Ignore compiled JavaScript files
+*.js.map
+
+# Ignore compiled CSS files
+*.css.map
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore IDE and editor-specific files and directories
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Ignore local settings files
+local_settings.py

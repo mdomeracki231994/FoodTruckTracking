@@ -1,0 +1,45 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>Food Truck Owner Signup</title>
+</head>
+<body>
+<form method="POST">
+    {% csrf_token %}
+    {% if is_user is False %}
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input name="first_name" type="text" class="form-control" id="first_name">
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input name="last_name" type="text" class="form-control" id="last_name">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input name="email" type="email" class="form-control" id="email">
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input name="phone" type="tel" class="form-control" id="phone">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+    {% endif %}
+    <div class="mb-3">
+        <label for="food_truck_name" class="form-label">Food Truck Name</label>
+        <input name="food_truck_name" type="text" class="form-control" id="food_truck_name">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</body>
+</html>
