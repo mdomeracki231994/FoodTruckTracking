@@ -25,6 +25,7 @@ class AppUserManager(BaseUserManager):
         user = self.create_user(email, password)
         user.is_superuser = True
         user.username = user.email
+        user.is_admin = True
         user.save()
         return user
 
