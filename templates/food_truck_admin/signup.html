@@ -10,7 +10,6 @@
     <title>Food Truck Owner Signup</title>
 </head>
 <body>
-{% if is_user is False %}
     <form method="POST">
         {% csrf_token %}
         <div class="mb-3">
@@ -19,6 +18,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-{% endif %}
 </body>
 </html>
