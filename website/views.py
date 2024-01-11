@@ -6,11 +6,18 @@ from user_management.models import AppUser
 
 
 def index(request):
-    return render(request, 'website/index.html')
+    user = request.user
+    return render(request, 'website/index.html', {'user': user})
 
 
 def user_login(request):
-    pass
+    if request.method == "POST":
+        user_email = request.POST.get('')
+        user_password = request.POST.get('')
+        user = authenticate(user_email, user_password)
+        login(request, user)
+        return redirect('home')
+    return render(request, 'website/login.html')
 
 
 def signup(request):
