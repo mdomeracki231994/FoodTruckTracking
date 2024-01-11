@@ -7,6 +7,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <title>Food Truck Tracking</title>
 </head>
 <body>
@@ -36,8 +40,7 @@
     <div class="container p-5">
         <div class="row">
             <div class="col-12 d-flex justify-content-center align-content-center">
-                <!-- TODO Figure out how to get maps with location data. This will be the map area. -->
-                Map will go here.
+                <div id="map" style="height: 400px; width: 100%;"></div>
             </div>
         </div>
     </div>
@@ -119,6 +122,45 @@
         </div>
     </div>
 </section>
+<script>
+    function getUserLocation(callback) {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    console.log(`Latitude: ${lat}, longitude: ${lng}`);
+                    callback([lat, lng]);
+                },
+                (error) => {
+                    console.error("Error getting user location:", error);
+                    callback(null);
+                }
+            );
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+            callback(null);
+        }
+    }
+
+    function buildMap(coordinates) {
+        if (coordinates) {
+            const [lat, lng] = coordinates;
+            const map = L.map('map').setView([lat, lng], 8)
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+        } else {
+            console.log("No Coordinates provided.")
+        }
+    }
+
+    window.addEventListener('load', () => {
+        getUserLocation(buildMap);
+    });
+</script>
+
 <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
 </body>
 </html>
