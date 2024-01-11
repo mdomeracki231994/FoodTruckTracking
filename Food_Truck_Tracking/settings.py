@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'user_management',
     'food_truck_admin',
     'website',
+    'support_ticket_management',
 ]
 
 MIDDLEWARE = [
