@@ -3,11 +3,19 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from user_management.models import AppUser
+from food_truck_admin.models import FoodTruckLocation
 
 
 def index(request):
+    truck_locations = FoodTruckLocation.objects.all()  # TODO,  We will want a query that returns trucks close to user.  Not all trucks in the system.
+    for loc in truck_locations:
+        print(f'Lat: {loc.latitude}')
     user = request.user
-    return render(request, 'website/index.html', {'user': user})
+    context = {
+        'user': user,
+        'truck_locations': truck_locations,
+    }
+    return render(request, 'website/index.html', context)
 
 
 def user_login(request):

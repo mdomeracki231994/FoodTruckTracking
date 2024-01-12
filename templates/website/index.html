@@ -129,7 +129,6 @@
                 (position) => {
                     const lat = position.coords.latitude;
                     const lng = position.coords.longitude;
-                    console.log(`Latitude: ${lat}, longitude: ${lng}`);
                     callback([lat, lng]);
                 },
                 (error) => {
@@ -151,6 +150,9 @@
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
+            {% for truck_location in truck_locations %}
+                L.marker([{{ truck_location.latitude }}, {{ truck_location.longitude }}]).addTo(map)
+            {% endfor %}
         } else {
             console.log("No Coordinates provided.")
         }
@@ -161,6 +163,6 @@
     });
 </script>
 
-<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'js/BS/bootstrap.bundle.js' %}"></script>
 </body>
 </html>

@@ -10,6 +10,9 @@ class FoodTruckInfo(models.Model):
     food_truck_name = models.CharField(max_length=50)
     cuisine_type = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.food_truck_name
+
 
 class Menu(models.Model):
     food_truck = models.ForeignKey(FoodTruckInfo, on_delete=models.CASCADE)
