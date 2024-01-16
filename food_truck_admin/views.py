@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+import stripe
 
+from django.shortcuts import render, redirect
 from food_truck_admin.models import FoodTruckInfo
+from djstripe.models import Product
 
 
 def food_truck_owner_signup(request):
@@ -14,7 +16,10 @@ def food_truck_owner_signup(request):
                 is_payment_successful=True  # TODO Will need to update from stripe.
             )
             request.user.is_food_truck_owner = True
-        return render(request, 'food_truck_admin/signup.html',
-                      {'is_user': is_user})
+        context = {
+            'is_user': is_user,
+            'products': Product.objects.all()
+        }
+        return render(request, 'food_truck_admin/signup.html', context)
     else:
         return redirect('signup')

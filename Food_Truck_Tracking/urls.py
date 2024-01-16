@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
     path('owner_admin/', include('food_truck_admin.urls')),
+    path("stripe/", include("djstripe.urls", namespace="djstripe")),
 ]

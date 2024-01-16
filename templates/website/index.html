@@ -23,7 +23,7 @@
         <ul class="navbar-nav mr-auto">
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Signup As a Food Truck Owner</a>
+                    <a class="nav-link" href="{% url 'owner_signup' %}">Signup As a Food Truck Owner</a>
                 </li>
                 <li>
                     <a class="nav-link" href="#">Logout</a>

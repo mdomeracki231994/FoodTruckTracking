@@ -10,13 +10,29 @@
     <title>Food Truck Owner Signup</title>
 </head>
 <body>
-    <form method="POST">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="food_truck_name" class="form-label">Food Truck Name</label>
-            <input name="food_truck_name" type="text" class="form-control" id="food_truck_name">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<section>
+    <p class="title">Pricing Plans</p>
+    <div class="columns">
+        {% for product in products %}
+            <div class="column">
+                <p class="subtitle">{{ product.name }}</p>
+                {% for plan in product.plan_set.all %}
+                    <div>
+                        <p class="heading">{{ plan.nickname }}</p>
+                        <p>{{ plan.human_readable_price }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="food_truck_name" class="form-label">Food Truck Name</label>
+        <input name="food_truck_name" type="text" class="form-control" id="food_truck_name">
+    </div>
+    <button class="btn btn-primary" id="checkout-and-portal-button" type="submit">Checkout</button>
+</form>
 </body>
 </html>

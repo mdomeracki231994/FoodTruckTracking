@@ -7,7 +7,8 @@ from food_truck_admin.models import FoodTruckLocation
 
 
 def index(request):
-    truck_locations = FoodTruckLocation.objects.all()  # TODO,  We will want a query that returns trucks close to user.  Not all trucks in the system.
+    truck_locations = FoodTruckLocation.objects.all()  # TODO,  We will want a query that returns trucks close to
+    # user.  Not all trucks in the system.
     for loc in truck_locations:
         print(f'Lat: {loc.latitude}')
     user = request.user
