@@ -21,9 +21,9 @@ def index(request):
 
 def user_login(request):
     if request.method == "POST":
-        user_email = request.POST.get('')
-        user_password = request.POST.get('')
-        user = authenticate(user_email, user_password)
+        user_email = request.POST.get('user_email')
+        user_password = request.POST.get('user_password')
+        user = authenticate(username=user_email, password=user_password)
         login(request, user)
         return redirect('home')
     return render(request, 'website/login.html')
