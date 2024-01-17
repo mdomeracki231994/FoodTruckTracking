@@ -10,29 +10,18 @@
     <title>Food Truck Owner Signup</title>
 </head>
 <body>
-<section>
-    <p class="title">Pricing Plans</p>
-    <div class="columns">
-        {% for product in products %}
-            <div class="column">
-                <p class="subtitle">{{ product.name }}</p>
-                {% for plan in product.plan_set.all %}
-                    <div>
-                        <p class="heading">{{ plan.nickname }}</p>
-                        <p>{{ plan.human_readable_price }}</p>
-                    </div>
-                {% endfor %}
+<section class="d-flex align-items-center justify-content-center pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="display-4 text-center">Pricing Plans</p>
+                <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+                <stripe-pricing-table pricing-table-id="prctbl_1OZOxrJSBSqF67oIfRpR6qlg"
+                                      publishable-key="pk_test_51MMgy7JSBSqF67oIu1kE8UrVYdl3G6gVBYUxyau5FjBDoIhI83PwhykERMPdXDINMmPQij4Av3KkjoQTOHL75Q3a00NKECItOJ">
+                </stripe-pricing-table>
             </div>
-        {% endfor %}
+        </div>
     </div>
 </section>
-<form method="POST">
-    {% csrf_token %}
-    <div class="mb-3">
-        <label for="food_truck_name" class="form-label">Food Truck Name</label>
-        <input name="food_truck_name" type="text" class="form-control" id="food_truck_name">
-    </div>
-    <button class="btn btn-primary" id="checkout-and-portal-button" type="submit">Checkout</button>
-</form>
 </body>
 </html>
